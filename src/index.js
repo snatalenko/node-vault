@@ -68,7 +68,7 @@ module.exports = (config = {}) => {
     // Replace unicode encodings.
     uri = uri.replace(/&#x2F;/g, '/');
     options.headers = options.headers || {};
-    if (client.token !== undefined || client.token !== null || client.token !== '') {
+    if (client.token && !('X-Vault-Token' in options.headers)) {
       options.headers['X-Vault-Token'] = client.token;
     }
     options.uri = uri;
